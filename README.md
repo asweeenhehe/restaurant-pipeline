@@ -1,12 +1,12 @@
-# 🍽️ Restaurant Pipeline Project — Kedro Data Engineering
+# Restaurant Pipeline Project — Kedro Data Engineering
 
-## 📘 Overview
+## Overview
 This project implements a **modular data pipeline** for a restaurant chain using **Kedro**, designed to ingest, clean, and analyze operational and customer support data.  
 It follows a **multi-layered architecture** — *Bronze → Silver → Gold* — to progressively refine raw data into analytical insights.
 
 ---
 
-## 🧱 Pipeline Architecture
+## Pipeline Architecture
 
 | Layer  | Purpose                                                                 | Example Outputs                                                  |
 |---------|--------------------------------------------------------------------------|------------------------------------------------------------------|
@@ -16,7 +16,7 @@ It follows a **multi-layered architecture** — *Bronze → Silver → Gold* —
 
 ---
 
-## ⚙️ Datasets Processed
+## Datasets Processed
 
 | Dataset | Source Type | Description |
 |----------|--------------|-------------|
@@ -30,17 +30,17 @@ It follows a **multi-layered architecture** — *Bronze → Silver → Gold* —
 
 ---
 
-## 🧩 Key Analytics Models
+## Key Analytics Models
 
-### 1️⃣ Average Order Value (AOV)
+### Average Order Value (AOV)
 - Groups transactions by `store_id`
 - Computes `avg_order_value = total_revenue / total_orders`
 
-### 2️⃣ Tickets per Order
+### Tickets per Order
 - Groups support tickets by `order_id`
 - Aggregates `ticket_count` to measure post-order engagement
 
-### 3️⃣ Store Metrics Dashboard
+### Store Metrics Dashboard
 Combines all key KPIs:
 
 | Metric | Description |
@@ -52,7 +52,7 @@ Combines all key KPIs:
 
 ---
 
-## 🧠 Example Outputs
+## Example Outputs
 
 ### **Average Order Value**
 store_id                              avg_order_value
@@ -71,23 +71,23 @@ a9128331-08d7-41a2-b615-21283eee21cf   43215565       40807          0          
 
 ---
 
-## 🚀 Run Instructions
+## Run Instructions
 
-### 1️⃣ Set up environment
+### Set up environment
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r src/requirements.txt
 
-2️⃣ Run each pipeline layer
+Run each pipeline layer
 kedro run --pipeline=bronze
 kedro run --pipeline=silver
 kedro run --pipeline=gold
 
-3️⃣ Analyze Gold outputs
+Analyze Gold outputs
 python analyze_gold_metrics.py
 
-📂 Folder Structure
+Folder Structure
 restaurant-pipeline/
 │
 ├── data/
@@ -104,30 +104,30 @@ restaurant-pipeline/
 ├── analyze_gold_metrics.py    <- Local analysis script
 └── README.md
 
-📊 Insights Visualization
+Insights Visualization
 
 After generating the gold-layer analytics, three charts were created using Matplotlib (analyze_gold_metrics.py):
 
-1️⃣ Average Order Value by Store
+Average Order Value by Store
 
 Shows the average transaction size per store, useful for identifying high-value outlets.
 plt.bar(aov['store_id'], aov['avg_order_value'])
 plt.title("Average Order Value by Store")
 
-2️⃣ Tickets per Order Distribution
+Tickets per Order Distribution
 
 Plots how frequently support tickets occur per order.
 tickets['ticket_count'].hist()
 plt.title("Tickets per Order Distribution")
 
-3️⃣ Total Revenue per Store
+Total Revenue per Store
 
 Visualizes cumulative sales per store — a direct indicator of performance.
 plt.bar(store['store_id'], store['total_revenue'])
 plt.title("Total Revenue per Store")
 
 
-🧾 Summary
+Summary
 
 The visualizations confirm the data pipeline’s integrity and provide business-ready insights:
 	•	High-revenue stores correlate with higher average order values
@@ -136,10 +136,8 @@ The visualizations confirm the data pipeline’s integrity and provide business-
 
 ⸻
 
-🧰 Tech Stack
+Tech Stack
 	•	Kedro — Data pipeline orchestration
 	•	Pandas — Data wrangling
 	•	Matplotlib — Visualization
 	•	Azure Blob Storage — Cloud data source for tickets
-
----
